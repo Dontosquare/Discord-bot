@@ -17,7 +17,8 @@ client.on('ready', () => {
 
 
 client.on('messageCreate', async msg => {
-    if (msg.content === 'Good Boy') {
+    if (msg.author.bot) return;
+    if (msg.content.toLowerCase() === 'good boy') {
         try {
             const response = await fetch('https://dog.ceo/api/breeds/image/random');
             const data = await response.json();
