@@ -27,7 +27,21 @@ client.on('messageCreate', async msg => {
             msg.reply('Could not fetch a dog picture right now.');
         }
     }
+    if (msg.content.toLowerCase() === 'pspsps') {
+    try {
+        const response = await fetch('https://api.thecatapi.com/v1/images/search', {
+            headers: {
+                'x-api-key': process.env.CAT_API_KEY
+            }
+        });
+        const data = await response.json();
+        msg.reply(data[0].url);
+    } catch (error) {
+        msg.reply('Could not fetch a cat picture right now.');
+    }
+}
 });
 
-client.login(process.env.TOKEN)
+
+client.login(process.env.TOKEN);
 
